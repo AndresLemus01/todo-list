@@ -2,6 +2,7 @@ export interface TaskData {
   id?: number;
   title: string;
   description: string;
+  date: string;
   completed: boolean;
 
   // TODO: Add assignedTo property to Task component
@@ -27,9 +28,13 @@ export const Task = (props: TaskProps) => {
           task.completed && 'bg-blue-400'
         }`}
       ></div>
-      <div>
+      <div className="text-left">
         <p className="font-semibold text-gray-700">{task.title}</p>
         <p className="text-gray-400 text-sm">{task.description}</p>
+        <div className="flex pt-2 space-x-2">
+          <p className="text-gray-400 text-sm">{task.assignedTo}</p>
+          <p className="text-gray-400 text-sm">{task.date}</p>
+       </div>
       </div>
     </button>
   );
