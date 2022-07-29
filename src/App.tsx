@@ -1,8 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Task, TaskData } from './components';
 
 function App() {
   const [tasks, setTasks] = useState<Array<TaskData>>([]);
+
+  //Almacenar en localStorage
+  
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
+ 
+  useEffect(() => {
+    const tasks = JSON.parse(localStorage.getItem('tasks')  || '[]');
+    if (tasks) {
+     setTasks(tasks);
+    }
+  }, []);
+
+    
 
   const onCreateTask = (task: TaskData) => {
     setTasks([...tasks, { ...task, id: tasks.length + 1 }]);

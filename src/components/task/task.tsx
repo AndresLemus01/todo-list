@@ -18,6 +18,9 @@ interface TaskProps {
 
 export const Task = (props: TaskProps) => {
   const { task, toggleComplete } = props;
+  var fecha = new Date();
+  var fT = new Date(task.date);
+  
   return (
     <button
       className="border-b border-b-gray-200 p-3 flex items-center w-full"
@@ -33,7 +36,8 @@ export const Task = (props: TaskProps) => {
         <p className="text-gray-400 text-sm">{task.description}</p>
         <div className="flex pt-2 space-x-2">
           <p className="text-gray-400 text-sm">{task.assignedTo}</p>
-          <p className="text-gray-400 text-sm">{task.date}</p>
+          <p className={`text-gray-400 text-sm ${
+           fT.getTime() < fecha.getTime() && 'text-red-800 font-bold'}`}>{task.date}</p>
        </div>
       </div>
     </button>
